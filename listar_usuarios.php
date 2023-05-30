@@ -22,7 +22,7 @@
                 <th>E-mail</th>
                 <th>Telefone</th>
                 <th>Alterar</th>
-                <th>Excluir</th>
+                <th>Deletar</th>
             </tr>
             <?php
                 do{
@@ -34,7 +34,7 @@
                     echo "<td><a href='altera_usuario.php?id_usuario="
                     .$row['id_usuario']."'>Alterar</a></td>";
                     echo "<td><a href='excluir_usuario.php?id_usuario="
-                    .$row['id_usuario']."'>Excluir</a></td>";
+                    .$row['id_usuario']."'>Excluir</td>";
                     echo "</tr>";
                 }while($row = mysqli_fetch_array($result))
             ?>
