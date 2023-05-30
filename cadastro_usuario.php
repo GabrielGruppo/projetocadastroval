@@ -2,6 +2,15 @@
 
     include("conexao.php");
 
+    //Upload foto
+
+    $extensao = strlower(substr ($_FILES['foto']['name'], -4));
+    $pasta_destino = 'fotos/';
+    $nome_foto = pasta_destino.date("Ymd-His") . $extensao;
+    move_uploaded_file($_FILES['foto']['tmp_name'], $nome_foto);
+  
+    //fim upload
+
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
@@ -18,16 +27,16 @@
         exit();
     }
     else{
-        $sql = "INSERT INTO usuario (nome_usuario, email_usuario, fone_usuario, senha)";
+        $sql = "INSERT INTO usuario (nome_usuario, email_usuario, fone_usuario, senha, foto)";
 
-    $sql .= " VALUES ('".$nome."', '".$email."', '".$telefone."', '".$senha."')";
+        $sql .= " VALUES ('".$nome."', '".$email."', '".$telefone."', '".$senha."', '".$nome_foto."')";
 
-    echo $sql. "<br>";
-    $result = mysqli_query($con, $sql);
-    if($result)
-    echo "Dados cadastrados com sucesso!";
-    else
-    echo "Erro ao tentar cadastrar!";
+        echo $sql. "<br>";
+        $result = mysqli_query($con, $sql);
+        if($result)
+        echo "Dados cadastrados com sucesso!";
+        else
+        echo "Erro ao tentar cadastrar!";
     }
     
 
